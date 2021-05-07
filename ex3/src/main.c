@@ -14,18 +14,22 @@ int main(int argc, char const *argv[]) {
     scanf("%s ", op);
     if(!strcmp(op, "insert")){
       index_arr[count] = (INDEX *)realloc(index_arr[count], sizeof(INDEX));
-      _read_line_send_binary(index_arr, count);
-      index_arr = (INDEX **)realloc(index_arr, sizeof(INDEX *)); //alloc to another
-      count++;
+      if(!_read_line_send_binary(index_arr, count)){
+        index_arr = (INDEX **)realloc(index_arr, sizeof(INDEX *)); //alloc to another
+        count++;
+      }
     }
-    if(!strcmp(op, "search"));
-    if(!strcmp(op, "delete"));
+    if(!strcmp(op, "search")){
+      int key;
+      scanf("%d", &key);
+      if(count) _search_binary(key, index_arr, count); //search if there is register
+    };
+    if(!strcmp(op, "delete")){
+      int key;
+      scanf("%d", &key);
+      if(count) _delete_reg(key, index_arr, &count);
+    }
   }while(strcmp(op, "exit"));
-
-  _read_binary();
-
-  printf("%d\n", index_arr[1]->key);
-  printf("%d\n", index_arr[1]->file_position);
 
   for(int i = 0; i < count; i++){
     free(index_arr[i]);

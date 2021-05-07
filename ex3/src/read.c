@@ -44,7 +44,7 @@ void _read_line_to_struct(READ *read){
   free(token);
 }
 
-void _read_line_send_binary(INDEX **index, int space_alloc){
+int _read_line_send_binary(INDEX **index, int space_alloc){
 
   FILE *write_filename = fopen("binary.bin", "ab+"); //open in append mode
   assert(write_filename);
@@ -56,11 +56,15 @@ void _read_line_send_binary(INDEX **index, int space_alloc){
 
   fseek(write_filename, 0, SEEK_END);
   int actual_pos = ftell(write_filename);
-  insert_array(index, space_alloc, &read->uspNumber, &actual_pos);
 
-  fwrite(read, sizeof(*read), 1, write_filename);
+  if(!insert_array(index, space_alloc, &read->uspNumber, &actual_pos)){ //reg doesn't exist yet
+    fwrite(read, sizeof(*read), 1, write_filename);
+    fclose(write_filename);
+    return 0; //success
+  }
 
   fclose(write_filename);
+  return 1; //error
 }
 
 void _read_regs(FILE *filename){
@@ -88,19 +92,14 @@ void _read_regs(FILE *filename){
   return;
 }
 
-void _read_binary(){
-  //open binary file
-  FILE *filename = fopen("binary.bin" , "rb");
+void _search_binary(int key, INDEX **index, int size){
+  FILE *filename = fopen("binary.bin" , "rb"); //open binary file
   assert(filename);
 
-  //go to last position
-  fseek(filename, 0, SEEK_END);
-  long int regs = ftell(filename);
-  regs /= DATA; //total bytes / bytes per register
-
-  fseek(filename, 0, SEEK_SET);
-
-  _read_regs(filename);
-
+  int pos = binary_search(key, index, size, 0); //find reg
+  if(pos != -1){
+    fseek(filename, index[pos]->file_position ,SEEK_SET);
+    _read_regs(filename);
+  }
   fclose(filename);
 }

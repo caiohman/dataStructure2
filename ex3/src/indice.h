@@ -9,5 +9,15 @@ typedef struct index{
 /*@Description:*/
 /*@Param:*/
 /*@Return:*/
-void insert_array(INDEX **, int , int *, int *);
+int insert_array(INDEX **, int , int *, int *);
+
+/*@Description:*/
+/*@Param:*/
+/*@Return:*/
+int binary_search(int key, INDEX **index, int end, int start);
+
+/*@Description:*/
+/*@Param:*/
+/*@Return:*/
+void _delete_reg(int key, INDEX **index, int *size);
 #endif

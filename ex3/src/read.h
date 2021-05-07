@@ -14,16 +14,15 @@ typedef struct read{
   float grade;
 }READ;
 
-
 /*@Description:  read all registers from stdin and send to binary file        */
 /*@Param:        none                                                         */
 /*@Return:       none                                                         */
-void _read_line_send_binary(INDEX **index, int space_alloc);
+int _read_line_send_binary(INDEX **, int );
 
-/*@Description:  read registers from binary.bin                               */
+/*@Description:  search through registers from binary.bin                     */
 /*@Param:    none                                                             */
 /*@Return:   none                                                             */
-void _read_binary();
+void _search_binary(int , INDEX **, int );
 
 
 
