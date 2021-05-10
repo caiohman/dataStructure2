@@ -85,7 +85,7 @@ void _read_regs(FILE *filename){
   if(first_nameRs == 25){printf("Name: %s\n", read->first_name);}
   if(last_nameRs == 25){printf("Surname: %s\n", read->last_name);}
   if(classRs == 50){printf("Course: %s\n", read->class);}
-  if(gradeRs == 1){printf("Teste grade: %.2f\n", read->grade);}
+  if(gradeRs == 1){printf("Test grade: %.2f\n", read->grade);}
   printf("%s\n", "-------------------------------");
 
   free(read);
@@ -100,6 +100,10 @@ void _search_binary(int key, INDEX **index, int size){
   if(pos != -1){
     fseek(filename, index[pos]->file_position ,SEEK_SET);
     _read_regs(filename);
+    fclose(filename);
+    return;
   }
+  printf("%s\n", "Registro nao encontrado!");
   fclose(filename);
+  return;
 }

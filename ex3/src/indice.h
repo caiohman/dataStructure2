@@ -6,18 +6,18 @@ typedef struct index{
   int file_position;
 }INDEX;
 
-/*@Description:*/
-/*@Param:*/
-/*@Return:*/
+/*@Description: insert values to index                                        */
+/*@Param: pointer to array, array size, key and binary file position          */
+/*@Return: 0 for success or 1 for error                                       */
 int insert_array(INDEX **, int , int *, int *);
 
-/*@Description:*/
-/*@Param:*/
-/*@Return:*/
-int binary_search(int key, INDEX **index, int end, int start);
+/*@Description: search elements in array*/
+/*@Param: key, pointer to array, end of array and beginning of array*/
+/*@Return: array position*/
+int binary_search(int , INDEX **, int , int );
 
-/*@Description:*/
-/*@Param:*/
-/*@Return:*/
+/*@Description: delete array's elements                                       */
+/*@Param: key, pointer to array and array size                                */
+/*@Return: none                                                               */
 void _delete_reg(int key, INDEX **index, int *size);
 #endif

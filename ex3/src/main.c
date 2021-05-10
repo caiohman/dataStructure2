@@ -7,7 +7,7 @@
 
 int main(int argc, char const *argv[]) {
   char op[6];
-  INDEX **index_arr = (INDEX **)calloc(1, sizeof(INDEX*)); //index array
+  INDEX **index_arr = (INDEX **)calloc(200 , sizeof(INDEX *)); //index array
   int count = 0;
 
   do{
@@ -15,14 +15,14 @@ int main(int argc, char const *argv[]) {
     if(!strcmp(op, "insert")){
       index_arr[count] = (INDEX *)realloc(index_arr[count], sizeof(INDEX));
       if(!_read_line_send_binary(index_arr, count)){
-        index_arr = (INDEX **)realloc(index_arr, sizeof(INDEX *)); //alloc to another
         count++;
+        //index_arr = (INDEX **)realloc(index_arr, sizeof(INDEX *)); //alloc to another
       }
     }
     if(!strcmp(op, "search")){
       int key;
       scanf("%d", &key);
-      if(count) _search_binary(key, index_arr, count); //search if there is register
+      (count) ? _search_binary(key, index_arr, count) : printf("%s\n", "Registro nao encontrado!"); //search if there is register
     };
     if(!strcmp(op, "delete")){
       int key;
@@ -35,7 +35,6 @@ int main(int argc, char const *argv[]) {
     free(index_arr[i]);
   }
   free(index_arr);
-
 
   return 0;
 }

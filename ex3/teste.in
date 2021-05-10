@@ -1,8 +1,5 @@
 insert 1,Raymond,Adeline,Sistemas de informacao,2
 insert 2,Jeanne,Alice,Ciencia da computacao,6
-insert 1,Raymond,Adeline,Sistemas de informacao,2
-search 2
-search 1
 delete 1
-search 1
+insert 3,Gregory,Alicia,Engenharia da computacao,0
 exit

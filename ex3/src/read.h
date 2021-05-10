@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include "indice.h"
 
-
 typedef struct read{
   int uspNumber;
   char first_name[25];
@@ -15,16 +14,13 @@ typedef struct read{
 }READ;
 
 /*@Description:  read all registers from stdin and send to binary file        */
-/*@Param:        none                                                         */
-/*@Return:       none                                                         */
+/*@Param:  pointer to array, array size                                       */
+/*@Return: 0 for success and 1 for error                                      */
 int _read_line_send_binary(INDEX **, int );
 
 /*@Description:  search through registers from binary.bin                     */
-/*@Param:    none                                                             */
+/*@Param: key, pointer to array, array's size                                 */
 /*@Return:   none                                                             */
 void _search_binary(int , INDEX **, int );
-
-
-
 
 #endif
